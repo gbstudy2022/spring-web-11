@@ -26,6 +26,9 @@ public class OrderConverter {
         out.setUsername(order.getUsername());
         out.setItems(order.getItems().stream().map(orderItemConverter::entityToDto).collect(Collectors.toList()));
         out.setStatus(OrderStatusRus.getStatusMap().get(order.getStatus()));
+        out.setCity(order.getCity().getName());
+        out.setCountry(order.getCity().getCountry().getName());
+        out.setPostalCode(order.getPostalCode());
         return out;
     }
 }

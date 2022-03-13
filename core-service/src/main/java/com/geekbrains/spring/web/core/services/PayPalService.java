@@ -42,8 +42,8 @@ public class PayPalService {
                                 .quantity(String.valueOf(orderItem.getQuantity())))
                         .collect(Collectors.toList()))
                 .shippingDetail(new ShippingDetail().name(new Name().fullName(order.getUsername()))
-                        .addressPortable(new AddressPortable().addressLine1("123 Townsend St").addressLine2("Floor 6")
-                                .adminArea2("San Francisco").adminArea1("CA").postalCode("94107").countryCode("US")));
+                        .addressPortable(new AddressPortable().addressLine1(order.getAddress())
+                                .adminArea2(order.getCity().getName()).postalCode(String.valueOf(order.getPostalCode())).countryCode(order.getCity().getCountry().getCode())));
         purchaseUnitRequests.add(purchaseUnitRequest);
         orderRequest.purchaseUnits(purchaseUnitRequests);
         return orderRequest;

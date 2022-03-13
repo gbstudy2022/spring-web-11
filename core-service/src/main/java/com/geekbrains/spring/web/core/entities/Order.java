@@ -1,5 +1,7 @@
 package com.geekbrains.spring.web.core.entities;
 
+import com.geekbrains.spring.web.core.dictionaries.City;
+import com.geekbrains.spring.web.core.dictionaries.Country;
 import com.geekbrains.spring.web.core.dictionaries.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +36,13 @@ public class Order {
 
     @Column(name = "address")
     private String address;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    @Column(name = "postal_code")
+    private Integer postalCode;
 
     @Column(name = "phone")
     private String phone;
