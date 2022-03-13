@@ -1,5 +1,6 @@
 package com.geekbrains.spring.web.core.entities;
 
+import com.geekbrains.spring.web.core.dictionaries.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,9 @@ public class Order {
 
     @Column(name = "phone")
     private String phone;
+
+    @Column(name = "status")
+    private OrderStatus status;
 
     @CreationTimestamp
     @Column(name = "created_at")

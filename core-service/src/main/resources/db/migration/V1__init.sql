@@ -43,11 +43,13 @@ create table order_items
     updated_at        timestamp default current_timestamp
 );
 
-insert into orders (username, total_price, address, phone)
-values ('bob', 200.00, 'address', '12345');
+alter table orders add column status varchar(255)  not null;
 
-insert into order_items (product_id, order_id, quantity, price_per_product, price)
-values (1, 1, 2, 100.00, 200.00);
+--insert into orders (username, total_price, address, phone, status)
+--values ('bob', 200.00, 'address', '12345', 'NEW');
+
+--insert into order_items (product_id, order_id, quantity, price_per_product, price)
+--values (1, 1, 2, 100.00, 200.00);
 
 
 

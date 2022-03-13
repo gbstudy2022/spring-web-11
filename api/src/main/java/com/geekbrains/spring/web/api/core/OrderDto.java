@@ -10,6 +10,15 @@ public class OrderDto {
     private BigDecimal totalPrice;
     private String address;
     private String phone;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
@@ -62,12 +71,13 @@ public class OrderDto {
     public OrderDto() {
     }
 
-    public OrderDto(Long id, String username, List<OrderItemDto> items, BigDecimal totalPrice, String address, String phone) {
+    public OrderDto(Long id, String username, List<OrderItemDto> items, BigDecimal totalPrice, String address, String phone, String status) {
         this.id = id;
         this.username = username;
         this.items = items;
         this.totalPrice = totalPrice;
         this.address = address;
         this.phone = phone;
+        this.status = status;
     }
 }
