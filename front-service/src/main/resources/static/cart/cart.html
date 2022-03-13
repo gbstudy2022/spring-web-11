@@ -29,7 +29,21 @@
     <form novalidate>
         <input class="form-control" type="text" placeholder="Номер телефона получателя" ng-model="orderDetails.phone">
         <p></p>
-        <input class="form-control" type="text" placeholder="Адрес доставки" ng-model="orderDetails.address">
+        <select class="form-control" placeholder="Страна"
+                ng-model="orderDetails.country"
+                ng-options="country.name for country in countries"
+                ng-change="getCities()">
+        </select>
+        <p></p>
+        <select class="form-control" placeholder="Город"
+                ng-model="orderDetails.city"
+                ng-options="city.name for city in cities"
+                data-ng-disabled="!isCountrySet()">
+        </select>
+        <p></p>
+        <input class="form-control" type="text" placeholder="Улица, дом" ng-model="orderDetails.address" data-ng-disabled="!isCitySet()">
+        <p></p>
+        <input class="form-control" type="text" placeholder="Индекс" ng-model="orderDetails.postalCode" data-ng-disabled="!isCitySet()">
         <p></p>
     </form>
 

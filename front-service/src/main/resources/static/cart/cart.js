@@ -32,5 +32,38 @@ angular.module('market-front').controller('cartController', function ($scope, $h
         });
     };
 
+    $scope.loadDictionaries = function () {
+            $http({
+                url: 'http://localhost:5555/core/api/v1/dict/countries',
+                method: 'GET'
+            }).then(function (response) {
+                $scope.countries = response.data;
+            });
+        };
+
+    $scope.isCountrySet = function() {
+        return $scope.orderDetails ? $scope.orderDetails.country : null;
+    }
+
+    $scope.isCitySet = function() {
+            return $scope.orderDetails ? $scope.orderDetails.city : null;
+        }
+
+    $scope.getCities  = function() {
+        if($scope.isCountrySet()){
+            $http({
+                url: 'http://localhost:5555/core/api/v1/dict/countries/'+$scope.orderDetails.country.id+'/cities',
+                method: 'GET'
+            }).then(function (response) {
+                $scope.cities = response.data;
+            });
+        } else {
+         $scope.cities = null;
+        }
+
+    }
+
     $scope.loadCart();
+    $scope.loadDictionaries();
+
 });

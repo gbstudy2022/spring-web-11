@@ -43,13 +43,41 @@ create table order_items
     updated_at        timestamp default current_timestamp
 );
 
-insert into orders (username, total_price, address, phone)
-values ('bob', 200.00, 'address', '12345');
-
-insert into order_items (product_id, order_id, quantity, price_per_product, price)
-values (1, 1, 2, 100.00, 200.00);
+alter table orders add column status varchar(255)  not null;
+alter table orders add column postal_code int not null;
 
 
+--insert into orders (username, total_price, address, phone, status)
+--values ('bob', 200.00, 'address', '12345', 'NEW');
+
+--insert into order_items (product_id, order_id, quantity, price_per_product, price)
+--values (1, 1, 2, 100.00, 200.00);
+
+create table countries (
+    id           bigserial primary key,
+    name         varchar(255)  not null,
+    code         varchar(5)  not null
+);
+
+create table cities (
+    id           bigserial primary key,
+    name         varchar(255)  not null,
+    country_id   bigint not null references countries (id)
+);
+
+alter table orders add column city_id bigint not null references cities (id);
+
+insert into countries (id, name, code)
+values
+(1, 'Russia', 'RU'),
+(2, 'Austria', 'AT'),
+(3, 'Italy', 'ITA');
+
+insert into cities (id, name, country_id)
+values
+(1, 'Moscow', 1),
+(2, 'Ivanovo', 1),
+(3, 'Roma', 3);
 
 
 
